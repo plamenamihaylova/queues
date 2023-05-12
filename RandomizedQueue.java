@@ -128,13 +128,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             return result;
         }
 
-        private Item[] generateArray(int index, Item[] queue) {
-            Item[] result = (Item[]) new Object[queue.length - 1];
+        private Item[] generateArray(int index, Item[] inputQueue) {
+            Item[] result = (Item[]) new Object[inputQueue.length - 1];
             for (int i = 0; i < index; i++) {
-                result[i] = queue[i];
+                result[i] = inputQueue[i];
             }
             for (int i = index + 1; i < result.length; i++) {
-                result[i - 1] = queue[i];
+                result[i - 1] = inputQueue[i];
             }
             return result;
         }
