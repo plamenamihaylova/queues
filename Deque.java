@@ -17,26 +17,29 @@ import java.util.NoSuchElementException;
  */
 
 public class Deque<Item> implements Iterable<Item> {
-    private Node<Item> first;
-    private Node<Item> last;
+    private Node first;
+    private Node last;
     private int size;
 
 
-    private class Node<Item> {
+    private class Node {
         Item item;
-        Node<Item> previous;
-        Node<Item> next;
+        Node previous;
+        Node next;
     }
 
+    /**
+     * Construct an empty deque
+     */
     public Deque() {
-        // first = new Node<>();
         first = null;
-        // last = new Node<>();
         last = null;
         size = 0;
     }
 
     /**
+     * Check if a deque is empty.
+     *
      * @return {@code true} if the current stack is empty; {@code false} otherwise
      */
     public boolean isEmpty() {
@@ -44,6 +47,8 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
+     * Return the sie of the deque.
+     *
      * @return the number of items in the current deque
      */
     public int size() {
@@ -51,16 +56,16 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
-     * adds new item to the beginning of the deque - before the previous elements
+     * Add new item to the front of the deque.
      *
      * @param item - the item that will be added to the deque
      * @trows IllegalArgumentException if the param is null
      */
     public void addFirst(Item item) {
         if (item == null) throw new IllegalArgumentException();
-        Node<Item> previousFirst = first;
+        Node previousFirst = first;
 
-        first = new Node<>();
+        first = new Node();
         first.item = item;
         first.previous = null;
         first.next = previousFirst;
@@ -72,16 +77,16 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
-     * adds new item at the end of the deque - after all the previous elements
+     * Add new item at the back of the deque.
      *
      * @param item - the item that will be added to the deque
      * @trows IllegalArgumentException if the param is null
      */
     public void addLast(Item item) {
         if (item == null) throw new IllegalArgumentException();
-        Node<Item> previousLast = last;
+        Node previousLast = last;
 
-        last = new Node<>();
+        last = new Node();
         last.item = item;
         last.previous = previousLast;
         if (size == 0) first = last;
@@ -90,7 +95,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
-     * removes the first element of the deque
+     * Remove the first element of the deque.
      *
      * @return the first item in the deque
      * @throws NoSuchElementException if the current deque is empty
@@ -107,7 +112,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
-     * removes the last element of the deque
+     * Remove the last element of the deque.
      *
      * @return the last item in the deque
      * @throws NoSuchElementException if the current deque is empty
@@ -124,9 +129,9 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
-     * returns an iterator to this deque that iterates through the items in FIFO order
+     * Return a deque iterator that iterates through the items in FIFO order
      *
-     * @return an iterator to this deque that iterates through the items in FIFO order
+     * @return an iterator that iterates through the items in FIFO order
      */
     public Iterator<Item> iterator() {
         return new DequeIterator(first);
@@ -134,7 +139,7 @@ public class Deque<Item> implements Iterable<Item> {
 
 
     /**
-     * returns a string representation of the deque
+     * Return a string representation of the deque.
      *
      * @return the sequence of items in this deque in FIFO order, separated by new lines
      */
@@ -149,9 +154,9 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     private class DequeIterator implements Iterator<Item> {
-        Node<Item> current;
+        Node current;
 
-        public DequeIterator(Node<Item> item) {
+        public DequeIterator(Node item) {
             current = item;
         }
 
