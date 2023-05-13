@@ -1,8 +1,24 @@
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * ASSESSMENT SUMMARY
+ * <p>
+ * Compilation:  PASSED (0 errors, 7 warnings)
+ * API:          PASSED
+ * <p>
+ * SpotBugs:     PASSED
+ * PMD:          PASSED
+ * Checkstyle:   PASSED
+ * <p>
+ * Correctness:  49/49 tests passed
+ * Memory:       128/129 tests passed
+ * Timing:       165/193 tests passed
+ */
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private static final int INIT_CAPACITY = 8;
     private Item[] queue;
@@ -66,46 +82,18 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (isEmpty()) throw new NoSuchElementException();
         int index = StdRandom.uniformInt(size);
         Item removedItem = queue[index];
-
-        // Item[] result = (Item[]) new Object[queue.length - 1];
-        //
-        // if (index == 0) {
-        //     Item[] tmp = (Item[]) new Object[queue.length - 1];
-        //     System.arraycopy(queue, index + 1, tmp, 0, tmp.length);
-        //     result = tmp;
-        //
-        // }
-        // else if (index < queue.length - 1) {
-        //     Item[] tmp1 = (Item[]) new Object[index];
-        //     System.arraycopy(queue, 0, tmp1, 0, tmp1.length);
-        //     Item[] tmp2 = (Item[]) new Object[queue.length - (index + 1)];
-        //     System.arraycopy(queue, index + 1, tmp2, 0, tmp2.length);
-        //
-        //     System.arraycopy(tmp1, 0, result, 0, tmp1.length);
-        //     System.arraycopy(tmp2, 0, result, tmp1.length, tmp2.length);
-        // }
-        // else {
-        //     Item[] tmp = (Item[]) new Object[index];
-        //     System.arraycopy(queue, 0, tmp, 0, tmp.length);
-        //     result = tmp;
-        // }
-
         queue = updateInputQueueAfterRandomRemoval(index, queue);
-
         size--;
 
         if (size > 0 && size == queue.length / 4) resize(queue.length / 2);
         return removedItem;
     }
 
-
     private Item[] updateInputQueueAfterRandomRemoval(int index, Item[] inputQueue) {
         Item[] result = (Item[]) new Object[inputQueue.length - 1];
 
         if (index == 0) {
-            // Item[] tmp = (Item[]) new Object[inputQueue.length - 1];
             System.arraycopy(inputQueue, index + 1, result, 0, result.length);
-            // result = tmp;
 
         }
         else if (index < inputQueue.length - 1) {
@@ -185,89 +173,27 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
                 s.append(item);
                 s.append("\n");
             }
-
         }
-
         return s.toString();
     }
 
     public static void main(String[] args) {
-        // RandomizedQueue<String> q = new RandomizedQueue<String>();
-        // while (!StdIn.isEmpty()) {
-        //     String item = StdIn.readString();
-        //     if (!item.equals("-")) {
-        //         q.enqueue(item);
-        //     }
-        //     else if (!q.isEmpty()) {
-        //         StdOut.println(q.dequeue());
-        //         System.out.println("(" + q.size() + "left on queue)");
-        //     }
-        // }
-        // // System.out.println(q.toString());
-        // for (String str : q) {
-        //     System.out.println(str);
-        //     System.out.println("---");
-        // }
-        // System.out.println("(" + q.size() + "left on queue)");
-        //
-
-
-        // --------------
-
-        RandomizedQueue<Integer> testQueue = new RandomizedQueue<>();
-
-        // testQueue.enqueue(170);
-        // testQueue.enqueue(402);
-        // testQueue.enqueue(243);
-
-        // System.out.println(testQueue.iterator());
-        // for (Iterator<Integer> it = testQueue.iterator(); it.hasNext(); ) {
-        //     int i = it.next();
-        //     System.out.println(i);
-        //
-        // }
-
-        // testQueue.enqueue(336);
-        // testQueue.enqueue(315);
-        // testQueue.enqueue(161);
-        // testQueue.enqueue(75);
-        // testQueue.enqueue(435);
-        // testQueue.enqueue(66);
-
-        testQueue.enqueue(480);
-        testQueue.enqueue(39);
-        testQueue.enqueue(814);
-        testQueue.enqueue(585);
-        testQueue.enqueue(568);
-        testQueue.enqueue(312);
-        testQueue.enqueue(488);
-        testQueue.enqueue(666);
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        // System.out.println(testQueue.dequeue());
-        System.out.println();
-        // System.out.println("sample:" + testQueue.sample());
-        System.out.println(testQueue.size());
-        System.out.println();
-        System.out.println("to string");
-        System.out.println(testQueue.toString());
-
-
-        System.out.println("Iterator");
-        for (Iterator<Integer> it = testQueue.iterator(); it.hasNext(); ) {
-            // for (Integer pl : testQueue) {
-            //     System.out.println("inner foreach");
-            //     System.out.println(pl);
-            // }
-            int i = it.next();
-            System.out.println(i);
+        RandomizedQueue<String> q = new RandomizedQueue<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-")) {
+                q.enqueue(item);
+            }
+            else if (!q.isEmpty()) {
+                StdOut.println(q.dequeue());
+                System.out.println("(" + q.size() + "left on queue)");
+            }
         }
-
+        for (String str : q) {
+            System.out.println(str);
+            System.out.println("---");
+        }
+        System.out.println("(" + q.size() + "left on queue)");
 
     }
 }
