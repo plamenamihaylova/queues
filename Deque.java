@@ -38,7 +38,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     /**
-     * Check if a deque is empty.
+     * Check if the deque is empty.
      *
      * @return {@code true} if the current stack is empty; {@code false} otherwise
      */
@@ -73,7 +73,6 @@ public class Deque<Item> implements Iterable<Item> {
         if (size == 0) last = first;
         else previousFirst.previous = first;
         size++;
-
     }
 
     /**
