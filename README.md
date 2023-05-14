@@ -6,6 +6,17 @@
 Assignment | [my coursera profile](https://www.coursera.org/user/045cf702be8b31ef1aa039e2b4f07db6)**
 
 ---
+<!-- TOC -->
+
+* [Deques and Randomized Queues](#deques-and-randomized-queues)
+* [Task specification](#task-specification)
+    * [Deque API](#deque-api)
+    * [Randomized Queue API](#randomized-queue-api)
+* [Useful resources that have helped me in completing this assignment:](#useful-resources-that-have-helped-me-in-completing-this-assignment)
+
+<!-- TOC -->
+
+---
 
 ### Task specification
 
